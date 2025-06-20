@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
+<script type="text/babel" data-type="module">
+
+    const { useState } = React;
+    function App() {
+        const [currentPage, setCurrentPage] = useState('Home');
+        const renderPage = () => {
+            switch (currentPage) {
+                case 'Home':
+                    return <h2 style={{ color: "green" }}>Welcome to home</h2>;
+                    break;
+                case 'About':
+                    return <h2 style={{ color: "blue" }}>About Us</h2>;
+                    break;
+                case 'Contact':
+                    return <h2 style={{ color: "purple" }}>Contact Us</h2>
+                    break;
+                default:
+                    return <h2>Page Not Found</h2>
+            }
+        };
+        return (
+            <div class="app">
+                <nav>
+                    <button onClick={() => setCurrentPage('Home')}>Home</button>
+                    <button onClick={() => setCurrentPage('About')}>About</button>
+                    <button onClick={() => setCurrentPage('Contact')}>Contact</button>
+                </nav>
+                <div class="page-content">{renderPage()}</div>
+            </div>
+        )
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />)
+</script>
